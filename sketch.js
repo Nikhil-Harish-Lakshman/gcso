@@ -1,61 +1,54 @@
-var car,wall
-var speed ,weight
+var hr,mn,sc
+var scAngle,hrAngle,mnAngle
+
 
 
 
 
 function setup() {
-  createCanvas(1600,400);
-  createSprite(400, 200, 50, 50);
-  speed=random(55,90)
-  weight=random(400,1500)
-  car=createSprite(50,200,50,50) 
-  wall=createSprite(1500,200,60,height/2)
-  wall.shapeColor=color(80,80,80)
-  car.velocityX = speed;
-
-
-
-
+  createCanvas(400,400);
+  
 }
 
-
-
-
 function draw() {
-  background(0,0,0);  
+  background(255,255,255);  
+  translate(200,200)
+  rotate(-90)
+
+
+  hr= hour();
+  mn= minute();
+  sc= second();
+
+  angleMode(DEGREES)
+
+
+  scAngle = map(sc,0,60,0,360)
+  hrAngle = map(hr%12,0,12,0,360)
+  mnAngle = map(mn,0,60,0,360)
+
+  push();
+  rotate(scAngle)
+  stroke(255,0,0)
+  strokeWeight(7)
+  line(0,0,100,0)
+  pop()
+
+
+
+  push();
+  rotate(hrAngle)
+  stroke(0,0,255)
+  strokeWeight(7)
+  line(0,0,25,0)
+  pop();
+
+  push();
+  rotate(mnAngle)
+  stroke(0,255,0)
+  strokeWeight(7)
+  line(0,0,75,0)
+  pop();
   
 
-  if (wall.x - car.x < car.width + wall.width){
-     car.velocityX=0
-     var deformation= 0.5*weight*speed*speed/22500
-
-
-
-     if (deformation > 180){
-        car.shapeColor=color(255,0,0)
-
-
-     }
-     if (deformation < 180 && deformation > 100) {
-         car.shapeColor=color(230,230,0)
-
-
-
-     }
-
-     if (deformation > 100){
-    car.shapeColor=color(0,255,0)
-
-
-     }
-
-
-
-
-
-
-
-    }
-  drawSprites()
 }
